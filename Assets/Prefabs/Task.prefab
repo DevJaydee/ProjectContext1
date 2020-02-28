@@ -56,7 +56,7 @@ MonoBehaviour:
   dueDateMinutes: 0
   dueDataHours: 0
   dueDateDays: 0
-  image: {fileID: 5553229840099233490}
+  image: {fileID: 0}
   dueDateCounter: {fileID: 3734161980695273699}
 --- !u!1 &4333318319023885667
 GameObject:
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8077545503953505229}
   - component: {fileID: 8098809292726418654}
-  - component: {fileID: 5553229840099233490}
+  - component: {fileID: 1351809749422125275}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -103,7 +103,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4333318319023885667}
   m_CullTransparentMesh: 0
---- !u!114 &5553229840099233490
+--- !u!114 &1351809749422125275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
