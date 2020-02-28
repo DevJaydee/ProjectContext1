@@ -39,6 +39,16 @@ public class Task : MonoBehaviour
 	public TextMeshProUGUI DueDateCounter { get => dueDateCounter; set => dueDateCounter = value; }
 	#endregion
 
+	#region Monobehaviour Callbacks
+	private void Update()
+	{
+		if(state == TaskState.CountingDown)
+		{
+
+		}
+	}
+	#endregion
+
 	public Task(string _name, string _description)
 	{
 		this.name = _name;
