@@ -38,11 +38,16 @@ public class TaskManager : MonoBehaviour
 	/// </summary>
 	public void AddTask()
 	{
+		if(taskNameInput.text == "" || taskDescriptionInput.text == "")
+			return;
+
 		string _name = taskNameInput.text;
 		string _description = taskDescriptionInput.text;
 
+		GameObject taskParent = GetParentWithSpace();
+		GameObject newTaskGO = Instantiate(TaskPrefab, taskParent.transform, false);
+
 		Task newTask = new Task(_name, _description);
-		GameObject newTaskGO = Instantiate(TaskPrefab, GetParentWithSpace().transform, false);
 
 		newTaskGO.GetComponent<Task>().Name = newTask.Name;
 		newTaskGO.GetComponent<Task>().Description = newTask.Description;
@@ -52,6 +57,7 @@ public class TaskManager : MonoBehaviour
 		activeTaskObjects.Add(newTaskGO);
 
 		ToggleAddTaskMenu();
+		CleanTaskMenu();
 	}
 
 	/// <summary>
@@ -69,5 +75,11 @@ public class TaskManager : MonoBehaviour
 		}
 		Debug.Log("No more Space left for tasks!");
 		return null;
+	}
+
+	private void CleanTaskMenu()
+	{
+		taskNameInput.text = "";
+		taskDescriptionInput.text = "";
 	}
 }
