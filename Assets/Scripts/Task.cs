@@ -1,19 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
+public enum TaskState
+{
+	Creating,
+	Active,
+	Done
+}     // In which state the task currently is.
 public class Task : MonoBehaviour
 {
 	#region Variables
-	private enum TaskState
-	{
-		Creating,
-		Active,
-		CountingDown,
-		Done
-	}     // In which state the task currently is.
 	[SerializeField] private TaskState state = TaskState.Creating;  // Reference to the TaskState enum;
 	[Space]
 	[SerializeField] private string name = "";  // Name of the task.
@@ -27,7 +26,7 @@ public class Task : MonoBehaviour
 	#endregion
 
 	#region Getters And Setters
-	private TaskState State { get => state; set => state = value; }
+	public TaskState State { get => state; set => state = value; }
 
 	public string Name { get => name; set => name = value; }
 	public string Description { get => description; set => description = value; }
@@ -42,7 +41,7 @@ public class Task : MonoBehaviour
 	#region Monobehaviour Callbacks
 	private void Update()
 	{
-		if(state == TaskState.CountingDown)
+		if(state == TaskState.Active)
 		{
 
 		}
