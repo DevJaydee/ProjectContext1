@@ -6,20 +6,33 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
 	#region Variables
+	private static TaskManager instance = null;                             // An instance of this behaviour.
+
 	[SerializeField] private TMP_InputField taskNameInput = default;        // Reference to the Inputfield with the task name.
 	[SerializeField] private TMP_InputField taskDescriptionInput = default; // Reference to the Inputfield for the task description.
 	[Space]
 	[SerializeField] private GameObject TaskPrefab = default;               // The prefab task Gameobject.
-	[SerializeField] private GameObject addTaskMenu = default;              // The Add Task Menu.
+	[SerializeField] private GameObject taskMenu = default;                 // The Add Task Menu.
+	[SerializeField] private GameObject taskMenuAddButton = default;        // Reference to the Add button on the TaskMenu.
 	[SerializeField] private List<Task> activeTasks = new List<Task>();     // List with all the active tasks.
 	[SerializeField] private List<GameObject> activeTaskObjects = new List<GameObject>();     // List with all the active task Gameobjects.
 	[SerializeField] private GameObject[] taskParents = default;            // Array with all the gameobjects which can be a parent to a task.
 	#endregion
 
+	#region Getters and Setters
+	public static TaskManager Instance { get => instance; set => instance = value; }
+	#endregion
+
 	#region Monobehaviour Callbacks
+	private void Awake()
+	{
+		if(!instance || instance != this)
+			instance = this;
+	}
+
 	private void Start()
 	{
-		addTaskMenu.SetActive(false);
+		taskMenu.SetActive(false);
 	}
 	#endregion
 
@@ -29,7 +42,35 @@ public class TaskManager : MonoBehaviour
 	/// </summary>
 	public void ToggleAddTaskMenu()
 	{
-		addTaskMenu.SetActive(!addTaskMenu.activeInHierarchy);
+		CleanTaskMenu();
+
+		taskNameInput.interactable = true;
+		taskDescriptionInput.interactable = true;
+		taskMenuAddButton.SetActive(true);
+
+		taskMenu.SetActive(!taskMenu.activeInHierarchy);
+	}
+
+	/// <summary>
+	/// Opens the Task menu. But, this will only be called from the tasks itself.
+	/// This opens the tasks that gets clicked and loads the current task data into the menu.
+	/// Since this is purely for info, interaction with the inputfields are disabled and the add food button is removed.
+	/// </summary>
+	/// <param name="_name"></param>
+	/// <param name="_description"></param>
+	public void ToggleTaskMenuWithCurrentTaskData(string _name, string _description)
+	{
+		CleanTaskMenu();
+
+		taskNameInput.text = _name;
+		taskNameInput.interactable = false;
+
+		taskDescriptionInput.text = _description;
+		taskDescriptionInput.interactable = false;
+
+		taskMenuAddButton.SetActive(false);
+
+		taskMenu.SetActive(!taskMenu.activeInHierarchy);
 	}
 
 	/// <summary>
