@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// In which state the task currently is.
 public enum TaskState
 {
 	Creating,
 	Active,
 	Done
-}     // In which state the task currently is.
-public class Task : MonoBehaviour
+}
+public class Task : MonoBehaviour, IPointerDownHandler
 {
 	#region Variables
 	[SerializeField] private TaskState state = TaskState.Creating;  // Reference to the TaskState enum;
 	[Space]
-	[SerializeField] private string name = "";  // Name of the task.
+	[SerializeField] private new string name = "";  // Name of the task.
 	[SerializeField] private string description = "";   // Description for the task.
 	[SerializeField] private float dueDateMinutes = 0;  // How many Minutes are left before the task is due.
 	[SerializeField] private float dueDataHours = 0;    // How many Hours are left before the task is due.
@@ -46,11 +48,16 @@ public class Task : MonoBehaviour
 
 		}
 	}
+
+	void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+	{
+		TaskManager.Instance.ToggleTaskMenuWithCurrentTaskData(name, description);
+	}
 	#endregion
 
 	public Task(string _name, string _description)
 	{
-		this.name = _name;
-		this.description = _description;
+		name = _name;
+		description = _description;
 	}
 }
