@@ -17,10 +17,17 @@ public class TaskManager : MonoBehaviour
 	[SerializeField] private List<Task> activeTasks = new List<Task>();     // List with all the active tasks.
 	[SerializeField] private List<GameObject> activeTaskObjects = new List<GameObject>();     // List with all the active task Gameobjects.
 	[SerializeField] private GameObject[] taskParents = default;            // Array with all the gameobjects which can be a parent to a task.
+
+	private int dueDateDayTemp = 0;
+	private int dueDateHoursTemp = 0;
+	private int dueDateMinutesTemp = 0;
 	#endregion
 
 	#region Getters and Setters
 	public static TaskManager Instance { get => instance; set => instance = value; }
+	public int DueDateDayTemp { get => dueDateDayTemp; set => dueDateDayTemp = value; }
+	public int DueDateHoursTemp { get => dueDateHoursTemp; set => dueDateHoursTemp = value; }
+	public int DueDateMinutesTemp { get => dueDateMinutesTemp; set => dueDateMinutesTemp = value; }
 	#endregion
 
 	#region Monobehaviour Callbacks
@@ -93,6 +100,10 @@ public class TaskManager : MonoBehaviour
 		newTaskGO.GetComponent<Task>().Name = newTask.Name;
 		newTaskGO.GetComponent<Task>().Description = newTask.Description;
 		newTaskGO.GetComponent<Task>().State = TaskState.Active;
+
+		newTaskGO.GetComponent<Task>().DueDateDays = dueDateDayTemp;
+		newTaskGO.GetComponent<Task>().DueDataHours = dueDateHoursTemp;
+		newTaskGO.GetComponent<Task>().DueDateMinutes = dueDateMinutesTemp;
 
 		activeTasks.Add(newTask);
 		activeTaskObjects.Add(newTaskGO);
