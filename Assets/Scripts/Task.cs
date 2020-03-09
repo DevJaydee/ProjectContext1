@@ -19,12 +19,14 @@ public class Task : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 	[Space]
 	[SerializeField] private new string name = "";  // Name of the task.
 	[SerializeField] private string description = "";   // Description for the task.
-	[SerializeField] private float dueDateMinutes = 0;  // How many Minutes are left before the task is due.
-	[SerializeField] private float dueDataHours = 0;    // How many Hours are left before the task is due.
-	[SerializeField] private float dueDateDays = 0;     // How many Days are left before the task is due.
+	[SerializeField] private int dueDateMinutes = 0;  // How many Minutes are left before the task is due.
+	[SerializeField] private int dueDataHours = 0;    // How many Hours are left before the task is due.
+	[SerializeField] private int dueDateDays = 0;     // How many Days are left before the task is due.
 	[Space]
 	[SerializeField] private Image image = default;   // The image for the task. This will be some type of food.
 	[SerializeField] private TextMeshProUGUI dueDateCounter = default;  // The text element that shows the user how much time is left.
+
+	private float convertedMinutesToSecondDeadline = 0;
 	#endregion
 
 	#region Getters And Setters
@@ -32,20 +34,27 @@ public class Task : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 
 	public string Name { get => name; set => name = value; }
 	public string Description { get => description; set => description = value; }
-	public float DueDateMinutes { get => dueDateMinutes; set => dueDateMinutes = value; }
-	public float DueDataHours { get => dueDataHours; set => dueDataHours = value; }
-	public float DueDateDays { get => dueDateDays; set => dueDateDays = value; }
+	public int DueDateMinutes { get => dueDateMinutes; set => dueDateMinutes = value; }
+	public int DueDataHours { get => dueDataHours; set => dueDataHours = value; }
+	public int DueDateDays { get => dueDateDays; set => dueDateDays = value; }
 
 	public Image Image { get => image; set => image = value; }
 	public TextMeshProUGUI DueDateCounter { get => dueDateCounter; set => dueDateCounter = value; }
 	#endregion
 
 	#region Monobehaviour Callbacks
+	private void Start()
+	{
+		convertedMinutesToSecondDeadline = dueDateMinutes * 60;
+	}
+
 	private void Update()
 	{
 		if(state == TaskState.Active)
 		{
+			convertedMinutesToSecondDeadline -= Time.deltaTime;
 
+			dueDateCounter.text = dueDateDays + ":" + dueDataHours + ":" + (convertedMinutesToSecondDeadline / 60).ToString("F0");
 		}
 	}
 
