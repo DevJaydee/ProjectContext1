@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TaskMenu : MonoBehaviour
 {
@@ -33,5 +35,21 @@ public class TaskMenu : MonoBehaviour
 		{
 			dueDateMinutesButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = (i + 1).ToString();
 		}
+	}
+
+	public void SetDueDateDayOnClick()
+	{
+		GameObject buttonGO = EventSystem.current.currentSelectedGameObject;
+		TaskManager.Instance.DueDateDayTemp = int.Parse(buttonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text);
+	}
+	public void SetDueDateHoursOnClick()
+	{
+		GameObject buttonGO = EventSystem.current.currentSelectedGameObject;
+		TaskManager.Instance.DueDateHoursTemp = int.Parse(buttonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text);
+	}
+	public void SetDueDateMinutesOnClick()
+	{
+		GameObject buttonGO = EventSystem.current.currentSelectedGameObject;
+		TaskManager.Instance.DueDateMinutesTemp = int.Parse(buttonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text);
 	}
 }
