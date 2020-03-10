@@ -17,7 +17,8 @@ public class TaskManager : MonoBehaviour
 	[SerializeField] private List<Task> activeTasks = new List<Task>();     // List with all the active tasks.
 	[SerializeField] private List<GameObject> activeTaskObjects = new List<GameObject>();     // List with all the active task Gameobjects.
 	[SerializeField] private GameObject[] taskParents = default;            // Array with all the gameobjects which can be a parent to a task.
-
+	[Space]
+	[SerializeField] private GameObject characterGO = default;				// Reference to the Character Gameobject.
 	private int dueDateDayTemp = 0;
 	private int dueDateHoursTemp = 0;
 	private int dueDateMinutesTemp = 0;
@@ -28,6 +29,7 @@ public class TaskManager : MonoBehaviour
 	public int DueDateDayTemp { get => dueDateDayTemp; set => dueDateDayTemp = value; }
 	public int DueDateHoursTemp { get => dueDateHoursTemp; set => dueDateHoursTemp = value; }
 	public int DueDateMinutesTemp { get => dueDateMinutesTemp; set => dueDateMinutesTemp = value; }
+	public GameObject CharacterGO { get => characterGO; set => characterGO = value; }
 	#endregion
 
 	#region Monobehaviour Callbacks

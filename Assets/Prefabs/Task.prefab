@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5411740108547649654}
   - component: {fileID: 7345175591144489938}
   - component: {fileID: 6452617214027490639}
+  - component: {fileID: 7649839435188526647}
+  - component: {fileID: 344071689968875583}
   m_Layer: 5
   m_Name: Task
   m_TagString: Untagged
@@ -27,7 +29,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667491950655154953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6459656868205971978}
@@ -91,10 +93,40 @@ MonoBehaviour:
   name: 
   description: 
   dueDateMinutes: 0
-  dueDataHours: 0
+  dueDateHours: 0
   dueDateDays: 0
   image: {fileID: 7345175591144489938}
   dueDateCounter: {fileID: 3734161980695273699}
+  convertedMinutesToSecondDeadline: 0
+  convertedHoursToSecondsDeadline: 0
+  convertedDaysToSecondsDeadline: 0
+--- !u!114 &7649839435188526647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667491950655154953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6bdfc3c55bafed44a44f19f8dc095b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultPos: {x: 0, y: 0, z: 0}
+  draggingItem: 0
+  canvasGroup: {fileID: 344071689968875583}
+--- !u!225 &344071689968875583
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667491950655154953}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5874184783612472530
 GameObject:
   m_ObjectHideFlags: 0
