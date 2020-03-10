@@ -12,7 +12,7 @@ public enum TaskState
 	Active,
 	Done
 }
-public class Task : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 	#region Variables
 	[SerializeField] private TaskState state = TaskState.Creating;  // Reference to the TaskState enum;
@@ -93,9 +93,10 @@ public class Task : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 		}
 	}
 
-	void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+	void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
 	{
-		TaskManager.Instance.ToggleTaskMenuWithCurrentTaskData(name, description);
+		if(!GetComponent<ItemDragHandler>().DraggingItem)
+			TaskManager.Instance.ToggleTaskMenuWithCurrentTaskData(name, description);
 	}
 
 	void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
