@@ -26,9 +26,10 @@ public class Task : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 	[SerializeField] private Image image = default;   // The image for the task. This will be some type of food.
 	[SerializeField] private TextMeshProUGUI dueDateCounter = default;  // The text element that shows the user how much time is left.
 
-	private float convertedMinutesToSecondDeadline = 0;
-	private float convertedHoursToSecondsDeadline = 0;
-	private float convertedDaysToSecondsDeadline = 0;
+	private float convertedTotalSecondsToDeadline = 0;
+	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedMinutesToSecondDeadline = 0;
+	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedHoursToSecondsDeadline = 0;
+	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedDaysToSecondsDeadline = 0;
 	#endregion
 
 	#region Getters And Setters
@@ -42,35 +43,53 @@ public class Task : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 
 	public Image Image { get => image; set => image = value; }
 	public TextMeshProUGUI DueDateCounter { get => dueDateCounter; set => dueDateCounter = value; }
+
+	public float ConvertedTotalSecondsToDeadline { get => convertedTotalSecondsToDeadline; set => convertedTotalSecondsToDeadline = value; }
 	#endregion
 
-	#region Monobehaviour Callbacks
+	#region Functions
 	private void Start()
 	{
 		convertedMinutesToSecondDeadline = dueDateMinutes * 60;
 		convertedHoursToSecondsDeadline = dueDateHours * 3600;
 		convertedDaysToSecondsDeadline = dueDateDays * 86400;
+		convertedTotalSecondsToDeadline = convertedDaysToSecondsDeadline + convertedHoursToSecondsDeadline + convertedTotalSecondsToDeadline;
+
+		StartCoroutine(UpdateDueDateCounter());
 	}
 
 	private void Update()
 	{
-		if(state == TaskState.Active)
+		// Only calculate the timers when they are above zero... Which is also fair.
+		if(convertedMinutesToSecondDeadline > 0) convertedMinutesToSecondDeadline -= Time.deltaTime; else convertedMinutesToSecondDeadline = 0;
+		if(convertedHoursToSecondsDeadline > 0) convertedHoursToSecondsDeadline -= Time.deltaTime; else convertedHoursToSecondsDeadline = 0;
+		if(convertedDaysToSecondsDeadline > 0) convertedDaysToSecondsDeadline -= Time.deltaTime; else convertedDaysToSecondsDeadline = 0;
+		if(convertedTotalSecondsToDeadline > 0) convertedTotalSecondsToDeadline -= Time.deltaTime; else convertedTotalSecondsToDeadline = 0;
+	}
+
+	/// <summary>
+	/// Updates the Due Date counter in the game. Since this counter shows: Days, Hours and minutes, it is very much overkill to update the UI every frame.
+	/// So this only update every second, which is fair.
+	/// </summary>
+	/// <returns></returns>
+	private IEnumerator UpdateDueDateCounter()
+	{
+		while(true)
 		{
-			convertedMinutesToSecondDeadline -= Time.deltaTime;
-			convertedHoursToSecondsDeadline -= Time.deltaTime;
-			convertedDaysToSecondsDeadline -= Time.deltaTime;
+			if(state == TaskState.Active)
+			{
+				string dueDateDaysString = (convertedDaysToSecondsDeadline / 86400).ToString("F0");
+				if(dueDateDays < 10) dueDateDaysString = "0" + dueDateDaysString;
 
-			string dueDateDaysString = (convertedDaysToSecondsDeadline / 86400).ToString("F0");
-			if(dueDateDays < 10) dueDateDaysString = "0" + dueDateDaysString;
+				string dueDateHoursString = (convertedHoursToSecondsDeadline / 3600).ToString("F0");
+				if(dueDateHours < 10) dueDateHoursString = "0" + dueDateHoursString;
 
-			string dueDateHoursString = (convertedHoursToSecondsDeadline / 3600).ToString("F0");
-			if(dueDateHours < 10) dueDateHoursString = "0" + dueDateHoursString;
+				string dueDateMinutesString = (convertedMinutesToSecondDeadline / 60).ToString("F0");
+				if(dueDateMinutes < 10) dueDateMinutesString = "0" + dueDateMinutesString;
 
-			string dueDateMinutesString = (convertedMinutesToSecondDeadline / 60).ToString("F0");
-			if(dueDateMinutes < 10) dueDateMinutesString = "0" + dueDateMinutesString;
-
-
-			dueDateCounter.text = dueDateDaysString + ":" + dueDateHoursString + ":" + dueDateMinutesString;
+				dueDateCounter.text = dueDateDaysString + ":" + dueDateHoursString + ":" + dueDateMinutesString;
+			}
+			yield return new WaitForSeconds(1f);
 		}
 	}
 
