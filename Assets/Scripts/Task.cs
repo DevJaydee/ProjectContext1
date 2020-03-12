@@ -23,7 +23,8 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField] private int dueDateHours = 0;    // How many Hours are left before the task is due.
 	[SerializeField] private int dueDateDays = 0;     // How many Days are left before the task is due.
 	[Space]
-	[SerializeField] private Image image = default;   // The image for the task. This will be some type of food.
+	[SerializeField] private Image imageComp = default; // Reference to the Image component.
+	[SerializeField] private Sprite sprite = default;   // The sprite for the task. This will be some type of food.
 	[SerializeField] private TextMeshProUGUI dueDateCounter = default;  // The text element that shows the user how much time is left.
 
 	private float convertedTotalSecondsToDeadline = 0;
@@ -41,7 +42,7 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public int DueDataHours { get => dueDateHours; set => dueDateHours = value; }
 	public int DueDateDays { get => dueDateDays; set => dueDateDays = value; }
 
-	public Image Image { get => image; set => image = value; }
+	public Sprite Sprite { get => sprite; set => sprite = value; }
 	public TextMeshProUGUI DueDateCounter { get => dueDateCounter; set => dueDateCounter = value; }
 
 	public float ConvertedTotalSecondsToDeadline { get => convertedTotalSecondsToDeadline; set => convertedTotalSecondsToDeadline = value; }
@@ -50,6 +51,11 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	#region Functions
 	private void Start()
 	{
+		int randSprite = Random.Range(0, TaskManager.Instance.FoodImages.Length - 1);
+		Debug.Log(randSprite);
+		sprite = TaskManager.Instance.FoodImages[randSprite];
+		imageComp.sprite = sprite;
+
 		convertedMinutesToSecondDeadline = dueDateMinutes * 60;
 		convertedHoursToSecondsDeadline = dueDateHours * 3600;
 		convertedDaysToSecondsDeadline = dueDateDays * 86400;
