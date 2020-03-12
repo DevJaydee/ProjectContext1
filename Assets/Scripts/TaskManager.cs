@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
 	#region Variables
 	private static TaskManager instance = null;                             // An instance of this behaviour.
-
+	[SerializeField] private Sprite[] foodSprites = default;				// Array with all the Food Sprites.
+	[SerializeField] private Sprite[] spoiledFoodSprites = default;          // Array with all the Spoiled Food Sprites.
+	[Space]
 	[SerializeField] private TMP_InputField taskNameInput = default;        // Reference to the Inputfield with the task name.
 	[SerializeField] private TMP_InputField taskDescriptionInput = default; // Reference to the Inputfield for the task description.
 	[Space]
@@ -30,6 +33,8 @@ public class TaskManager : MonoBehaviour
 	public int DueDateHoursTemp { get => dueDateHoursTemp; set => dueDateHoursTemp = value; }
 	public int DueDateMinutesTemp { get => dueDateMinutesTemp; set => dueDateMinutesTemp = value; }
 	public GameObject CharacterGO { get => characterGO; set => characterGO = value; }
+	public Sprite[] FoodImages { get => foodSprites; set => foodSprites = value; }
+	public Sprite[] SpoiledFoodImages { get => spoiledFoodSprites; set => spoiledFoodSprites = value; }
 	#endregion
 
 	#region Monobehaviour Callbacks
