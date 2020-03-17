@@ -95,7 +95,8 @@ MonoBehaviour:
   dueDateMinutes: 0
   dueDateHours: 0
   dueDateDays: 0
-  image: {fileID: 7345175591144489938}
+  imageComp: {fileID: 7345175591144489938}
+  sprite: {fileID: 0}
   dueDateCounter: {fileID: 3734161980695273699}
   convertedMinutesToSecondDeadline: 0
   convertedHoursToSecondsDeadline: 0
