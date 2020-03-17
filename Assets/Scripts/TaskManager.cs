@@ -1,27 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TaskManager : MonoBehaviour
 {
 	#region Variables
 	private static TaskManager instance = null;                             // An instance of this behaviour.
-	[SerializeField] private Sprite[] foodSprites = default;				// Array with all the Food Sprites.
+	[SerializeField] private Sprite[] foodSprites = default;                // Array with all the Food Sprites.
 	[SerializeField] private Sprite[] spoiledFoodSprites = default;          // Array with all the Spoiled Food Sprites.
 	[Space]
 	[SerializeField] private TMP_InputField taskNameInput = default;        // Reference to the Inputfield with the task name.
 	[SerializeField] private TMP_InputField taskDescriptionInput = default; // Reference to the Inputfield for the task description.
 	[Space]
-	[SerializeField] private GameObject TaskPrefab = default;               // The prefab task Gameobject.
+	[SerializeField] private GameObject taskPrefab = default;               // The prefab task Gameobject.
 	[SerializeField] private GameObject taskMenu = default;                 // The Add Task Menu.
 	[SerializeField] private GameObject taskMenuAddButton = default;        // Reference to the Add button on the TaskMenu.
 	[SerializeField] private List<Task> activeTasks = new List<Task>();     // List with all the active tasks.
 	[SerializeField] private List<GameObject> activeTaskObjects = new List<GameObject>();     // List with all the active task Gameobjects.
 	[SerializeField] private GameObject[] taskParents = default;            // Array with all the gameobjects which can be a parent to a task.
 	[Space]
-	[SerializeField] private GameObject characterGO = default;				// Reference to the Character Gameobject.
+	[SerializeField] private GameObject taskOverviewPrefab = default;       // the task Overview Prefab.
+	[SerializeField] private GameObject taskOverviewMenu = default;     // Reference to the task overview gameobject.
+	[Space]
+	[SerializeField] private GameObject characterGO = default;              // Reference to the Character Gameobject.
 	private int dueDateDayTemp = 0;
 	private int dueDateHoursTemp = 0;
 	private int dueDateMinutesTemp = 0;
@@ -65,6 +68,11 @@ public class TaskManager : MonoBehaviour
 		taskMenu.SetActive(!taskMenu.activeInHierarchy);
 	}
 
+	public void ToggleTaskOverviewMenu()
+	{
+		taskOverviewMenu.SetActive(!taskOverviewMenu.activeInHierarchy);
+	}
+
 	/// <summary>
 	/// Opens the Task menu. But, this will only be called from the tasks itself.
 	/// This opens the tasks that gets clicked and loads the current task data into the menu.
@@ -100,7 +108,7 @@ public class TaskManager : MonoBehaviour
 		string _description = taskDescriptionInput.text;
 
 		GameObject taskParent = GetParentWithSpace();
-		GameObject newTaskGO = Instantiate(TaskPrefab, taskParent.transform, false);
+		GameObject newTaskGO = Instantiate(taskPrefab, taskParent.transform, false);
 
 		Task newTask = new Task(_name, _description);
 
