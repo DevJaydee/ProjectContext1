@@ -27,7 +27,7 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField] private Sprite sprite = default;   // The sprite for the task. This will be some type of food.
 	[SerializeField] private TextMeshProUGUI dueDateCounter = default;  // The text element that shows the user how much time is left.
 
-	private float convertedTotalSecondsToDeadline = 0;
+	[SerializeField] private float convertedTotalSecondsToDeadline = 0;
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedMinutesToSecondDeadline = 0;
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedHoursToSecondsDeadline = 0;
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedDaysToSecondsDeadline = 0;
@@ -51,9 +51,6 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	#region Functions
 	private void Start()
 	{
-		int randSprite = Random.Range(0, TaskManager.Instance.FoodImages.Length - 1);
-		Debug.Log(randSprite);
-		sprite = TaskManager.Instance.FoodImages[randSprite];
 		imageComp.sprite = sprite;
 
 		convertedMinutesToSecondDeadline = dueDateMinutes * 60;
@@ -116,9 +113,10 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	}
 	#endregion
 
-	public Task(string _name, string _description)
+	public Task(string _name, string _description, Sprite _sprite)
 	{
 		name = _name;
 		description = _description;
+		sprite = _sprite;
 	}
 }
