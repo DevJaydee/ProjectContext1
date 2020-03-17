@@ -22,7 +22,10 @@ public class TaskManager : MonoBehaviour
 	[SerializeField] private GameObject[] taskParents = default;            // Array with all the gameobjects which can be a parent to a task.
 	[Space]
 	[SerializeField] private GameObject taskOverviewPrefab = default;       // the task Overview Prefab.
-	[SerializeField] private GameObject taskOverviewMenu = default;     // Reference to the task overview gameobject.
+	[SerializeField] private GameObject taskOverviewMenu = default;         // Reference to the task overview gameobject.
+	[SerializeField] private GameObject taskOverviewMenuLayoutGroup = default;  // Reference to the Task overview layout group.
+	[SerializeField] private List<TaskOverviewItem> activeTaskOverviewItems = new List<TaskOverviewItem>(); // List with all the active task overview items.
+	[SerializeField] private List<GameObject> activeTaskOverviewObjects = new List<GameObject>();   // List with all the active task overview objects.
 	[Space]
 	[SerializeField] private GameObject characterGO = default;              // Reference to the Character Gameobject.
 	private int dueDateDayTemp = 0;
@@ -50,6 +53,7 @@ public class TaskManager : MonoBehaviour
 	private void Start()
 	{
 		taskMenu.SetActive(false);
+		taskOverviewMenu.SetActive(false);
 	}
 	#endregion
 
@@ -104,24 +108,38 @@ public class TaskManager : MonoBehaviour
 		if(taskNameInput.text == "" || taskDescriptionInput.text == "")
 			return;
 
+		int randSprite = Random.Range(0, FoodImages.Length - 1);
+		Sprite sprite = FoodImages[randSprite];
+
 		string _name = taskNameInput.text;
 		string _description = taskDescriptionInput.text;
 
 		GameObject taskParent = GetParentWithSpace();
 		GameObject newTaskGO = Instantiate(taskPrefab, taskParent.transform, false);
+		GameObject newTaskOverviewGO = Instantiate(taskOverviewPrefab, taskOverviewMenuLayoutGroup.transform, false);
 
-		Task newTask = new Task(_name, _description);
+		Task newTask = new Task(_name, _description, sprite);
+		TaskOverviewItem newTaskOverviewItem = new TaskOverviewItem(_name, sprite, dueDateDayTemp, dueDateHoursTemp, DueDateMinutesTemp);
 
 		newTaskGO.GetComponent<Task>().Name = newTask.Name;
 		newTaskGO.GetComponent<Task>().Description = newTask.Description;
+		newTaskGO.GetComponent<Task>().Sprite = newTask.Sprite;
 		newTaskGO.GetComponent<Task>().State = TaskState.Active;
-
 		newTaskGO.GetComponent<Task>().DueDateDays = dueDateDayTemp;
 		newTaskGO.GetComponent<Task>().DueDataHours = dueDateHoursTemp;
 		newTaskGO.GetComponent<Task>().DueDateMinutes = dueDateMinutesTemp;
 
+		newTaskOverviewGO.GetComponent<TaskOverviewItem>().Title = newTaskOverviewItem.Title;
+		newTaskOverviewGO.GetComponent<TaskOverviewItem>().Sprite = newTaskOverviewItem.Sprite;
+		newTaskOverviewGO.GetComponent<TaskOverviewItem>().DueDateDays = dueDateDayTemp;
+		newTaskOverviewGO.GetComponent<TaskOverviewItem>().DueDateHours = dueDateHoursTemp;
+		newTaskOverviewGO.GetComponent<TaskOverviewItem>().DueDateMinutes = dueDateMinutesTemp;
+
 		activeTasks.Add(newTask);
 		activeTaskObjects.Add(newTaskGO);
+
+		activeTaskOverviewItems.Add(newTaskOverviewItem);
+		activeTaskOverviewObjects.Add(newTaskOverviewGO);
 
 		ToggleAddTaskMenu();
 		CleanTaskMenu();
