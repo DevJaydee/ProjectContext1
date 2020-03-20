@@ -26,11 +26,13 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField] private Image imageComp = default; // Reference to the Image component.
 	[SerializeField] private Sprite sprite = default;   // The sprite for the task. This will be some type of food.
 	[SerializeField] private TextMeshProUGUI dueDateCounter = default;  // The text element that shows the user how much time is left.
-
+	[Space]
 	[SerializeField] private float convertedTotalSecondsToDeadline = 0;
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedMinutesToSecondDeadline = 0;
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedHoursToSecondsDeadline = 0;
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedDaysToSecondsDeadline = 0;
+	[Space]
+	[SerializeField] private float taskHungerWorth = 10;	// How much this wil fill the HungerBar with.
 	#endregion
 
 	#region Getters And Setters
@@ -46,6 +48,7 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public TextMeshProUGUI DueDateCounter { get => dueDateCounter; set => dueDateCounter = value; }
 
 	public float ConvertedTotalSecondsToDeadline { get => convertedTotalSecondsToDeadline; set => convertedTotalSecondsToDeadline = value; }
+	public float TaskHungerWorth { get => taskHungerWorth; set => taskHungerWorth = value; }
 	#endregion
 
 	#region Functions
