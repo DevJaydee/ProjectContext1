@@ -8,8 +8,11 @@ public class CloudJumperCharacterController : MonoBehaviour
 	[SerializeField] private Rigidbody2D rb = default;
 	[SerializeField] private float moveDir = 0;
 	[SerializeField] private float movespeed = 10000;
+	[Space]
+	[SerializeField] private Transform bottomOfChar = default;
 
 	public float MoveDir { get => moveDir; set => moveDir = value; }
+	public Transform BottomOfChar { get => bottomOfChar; set => bottomOfChar = value; }
 
 	private void Update()
 	{
@@ -33,7 +36,7 @@ public class CloudJumperCharacterController : MonoBehaviour
 	{
 		if(collision.gameObject.CompareTag("Cloud"))
 		{
-			rb.AddForce(Vector3.up * jumpForce);
+			rb.AddForce(Vector3.up * jumpForce * Time.deltaTime, ForceMode2D.Impulse);
 			Debug.Log("Jumped!");
 		}
 	}
