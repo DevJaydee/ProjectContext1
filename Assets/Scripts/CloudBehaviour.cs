@@ -6,18 +6,16 @@ public class CloudBehaviour : MonoBehaviour
 {
 	[SerializeField] private GameObject character = default;
 
-	private BoxCollider2D bc2d = default;
+	private BoxCollider2D boxColl = default;
 
 	private void Start()
 	{
-		bc2d = GetComponent<BoxCollider2D>();
+		boxColl = GetComponent<BoxCollider2D>();
+		character = CloudJumperSceneManager.Instance.CloudJumperCharacter;
 	}
 
 	private void Update()
 	{
-		if(character.transform.position.y < transform.position.y )
-		{
-
-		}
+		boxColl.enabled = character.GetComponent<CloudJumperCharacterController>().BottomOfChar.transform.position.y > boxColl.transform.position.y ? true : false;
 	}
 }
