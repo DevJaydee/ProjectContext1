@@ -15,7 +15,7 @@ public class SmoothFollow : MonoBehaviour
 	{
 		if(target)
 		{
-			desiredPos = target.position + offset;
+			desiredPos = new Vector3(0, target.position.y + offset.y, -10);
 			smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothing * Time.deltaTime);
 		}
 	}
