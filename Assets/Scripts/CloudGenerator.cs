@@ -8,11 +8,6 @@ public class CloudGenerator : MonoBehaviour
 	[SerializeField] private GameObject cloudPrefab = default;  // Prefab of the cloud
 	[SerializeField] private float distanceBetweenSpawns = 5f;  // How much distance between the previous cloud before we spawn a new cloud
 	[SerializeField] private List<GameObject> cloudsInScene = new List<GameObject>();   // list with all the clouds in the scene.
-
-	[SerializeField] private float horizontalMin = -Screen.width;
-	[SerializeField] private float horizontalMax = Screen.width;
-	[SerializeField] private float halfHeight;
-	[SerializeField] private float halfWidth;
 	#endregion
 
 	#region Getters & Setters
@@ -20,17 +15,6 @@ public class CloudGenerator : MonoBehaviour
 	#endregion
 
 	#region Monobehaviour Callbacks
-	private void Start()
-	{
-		Camera camera = Camera.main;
-
-		float halfHeight = camera.orthographicSize;
-		float halfWidth = camera.aspect * halfHeight;
-
-		horizontalMin = -halfWidth;
-		horizontalMax = halfWidth;
-	}
-
 	private void Update()
 	{
 		SpawnCloud();
@@ -42,7 +26,10 @@ public class CloudGenerator : MonoBehaviour
 	{
 		if(transform.position.y > cloudsInScene[cloudsInScene.Count - 1].transform.position.y + distanceBetweenSpawns)
 		{
-			GameObject newCloudGO = Instantiate(cloudPrefab, transform.position, Quaternion.identity);
+			Vector3 bottomLeftWorld = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+			Vector3 topRightWorld = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
+
+			GameObject newCloudGO = Instantiate(cloudPrefab, new Vector3(Random.Range(bottomLeftWorld.x, topRightWorld.x), transform.position.y, 0), Quaternion.identity);
 			cloudsInScene.Add(newCloudGO);
 		}
 	}
