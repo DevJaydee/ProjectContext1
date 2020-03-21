@@ -41,6 +41,7 @@ public class TaskManager : MonoBehaviour
 	public GameObject CharacterGO { get => characterGO; set => characterGO = value; }
 	public Sprite[] FoodImages { get => foodSprites; set => foodSprites = value; }
 	public Sprite[] SpoiledFoodImages { get => spoiledFoodSprites; set => spoiledFoodSprites = value; }
+	public List<Task> ActiveTasks { get => activeTasks; set => activeTasks = value; }
 	#endregion
 
 	#region Monobehaviour Callbacks
