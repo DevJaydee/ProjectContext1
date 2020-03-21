@@ -770,7 +770,7 @@ Transform:
   m_GameObject: {fileID: 1798433475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 11.75}
-  m_LocalScale: {x: 0.59, y: 0.59, z: 0.59}
+  m_LocalScale: {x: 0.5546, y: 0.5546, z: 0.5546}
   m_Children: []
   m_Father: {fileID: 1152833683}
   m_RootOrder: 0
@@ -872,10 +872,6 @@ MonoBehaviour:
   distanceBetweenSpawns: 5
   cloudsInScene:
   - {fileID: 1408700435}
-  horizontalMin: -1080
-  horizontalMax: 1080
-  halfHeight: 0
-  halfWidth: 0
 --- !u!4 &2087589640
 Transform:
   m_ObjectHideFlags: 0
@@ -884,7 +880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087589638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -981,11 +977,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6674411386480903714, guid: 3e2628d9d18a49e45ba38f7189378d31,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.534
-      objectReference: {fileID: 0}
     - target: {fileID: 6674411386995982349, guid: 3e2628d9d18a49e45ba38f7189378d31,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1041,30 +1032,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6674411386995982352, guid: 3e2628d9d18a49e45ba38f7189378d31,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6674411386995982353, guid: 3e2628d9d18a49e45ba38f7189378d31,
         type: 3}
       propertyPath: m_Name
       value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674411386995982354, guid: 3e2628d9d18a49e45ba38f7189378d31,
-        type: 3}
-      propertyPath: jumpForce
-      value: 750
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674411386995982355, guid: 3e2628d9d18a49e45ba38f7189378d31,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.42298108
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674411386995982355, guid: 3e2628d9d18a49e45ba38f7189378d31,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.07309878
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2628d9d18a49e45ba38f7189378d31, type: 3}
