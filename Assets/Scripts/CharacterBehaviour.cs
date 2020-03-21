@@ -25,12 +25,15 @@ public class CharacterBehaviour : MonoBehaviour
 	#region Voids
 	private void DecreaseHunger()
 	{
-		if(hungerBarValue > 0)
-			hungerBarValue -= hungerRate * Time.deltaTime;
-		else
-			hungerBarValue = 0;
+		if(TaskManager.Instance.ActiveTasks.Count > 0)
+		{
+			if(hungerBarValue > 0)
+				hungerBarValue -= hungerRate * Time.deltaTime;
+			else
+				hungerBarValue = 0;
 
-		sliderImage.fillAmount = hungerBarValue / 60;
+			sliderImage.fillAmount = hungerBarValue / 60;
+		}
 	}
 
 	public void IncreaseHunger(float amount)
