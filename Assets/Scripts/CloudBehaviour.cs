@@ -10,12 +10,15 @@ public class CloudBehaviour : MonoBehaviour
 
 	private void Start()
 	{
-		boxColl = GetComponent<BoxCollider2D>();
+		boxColl = this.GetComponent<BoxCollider2D>();
 		character = CloudJumperSceneManager.Instance.CloudJumperCharacter;
 	}
 
 	private void Update()
 	{
-		boxColl.enabled = character.GetComponent<CloudJumperCharacterController>().BottomOfChar.transform.position.y > boxColl.transform.position.y ? true : false;
+		if(character.GetComponent<CloudJumperCharacterController>().BottomOfChar.transform.position.y > boxColl.transform.position.y + boxColl.size.y / 2)
+			boxColl.enabled = true;
+		else
+			boxColl.enabled = false;
 	}
 }
