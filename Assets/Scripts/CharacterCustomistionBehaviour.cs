@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CharacterCustomistionBehaviour : MonoBehaviour
 {
-	[SerializeField] private Transform torsoTransform = default;
-	[SerializeField] private Transform lArmTransform = default;
-	[SerializeField] private Transform RArmTransform = default;
-	[SerializeField] private Transform lLegTransform = default;
-	[SerializeField] private Transform rLegTransform = default;
+	[SerializeField] private Sprite headSprite = default;
+	[SerializeField] private Sprite torsoSprite = default;
+	[SerializeField] private Sprite LegsSprite = default;
+
 }
