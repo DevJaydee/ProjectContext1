@@ -251,7 +251,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 42295175}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 976040475}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CharacterCustomisation
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &42295175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,9 +582,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: ea07e14a135f45843a8b3367ca418ce7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2083,7 +2094,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 45e40392c3f641f49a8bfde9c0eb0054, type: 3}
   - {fileID: 21300000, guid: e1930cef7ad4fd44897a95cdd8d1bc22, type: 3}
   - {fileID: 21300000, guid: 8c92d8bb99ff6c7439a09c675001b99a, type: 3}
-  spoiledFoodSprites: []
+  spoiledFoodSprites:
+  - {fileID: 21300000, guid: cbcda78d76543dd448329c6947db55b8, type: 3}
+  - {fileID: 21300000, guid: 491e231eca1b83b4ea8b3b66d1216540, type: 3}
+  - {fileID: 21300000, guid: d27ce92bd602b2d4e9518212874bba28, type: 3}
+  - {fileID: 21300000, guid: 651917d089142744b9fa1112b502bc90, type: 3}
+  - {fileID: 21300000, guid: 1096e175dbffa5a4fb7d725b193f2405, type: 3}
+  - {fileID: 21300000, guid: fb4a191a5a0e6404d845370d40f4e9dc, type: 3}
   taskNameInput: {fileID: 985182601}
   taskDescriptionInput: {fileID: 985182600}
   taskPrefab: {fileID: 667491950655154953, guid: e874d8944b26b9948a2585f8681d6182,
@@ -14106,6 +14123,17 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4626591077038063521, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea07e14a135f45843a8b3367ca418ce7,
+        type: 3}
+    - target: {fileID: 4626591077038063521, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4656103708291789011, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -25613,9 +25641,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: ea07e14a135f45843a8b3367ca418ce7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
