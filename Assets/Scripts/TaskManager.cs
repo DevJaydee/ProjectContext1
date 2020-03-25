@@ -58,6 +58,7 @@ public class TaskManager : MonoBehaviour
 	}
 	#endregion
 
+	#region Public Voids
 	/// <summary>
 	/// Opens the Add Task Menu (As the name implies).
 	/// Within the menu the user can add: Name, Description and Due Date.
@@ -111,6 +112,7 @@ public class TaskManager : MonoBehaviour
 
 		int randSprite = Random.Range(0, FoodImages.Length - 1);
 		Sprite sprite = FoodImages[randSprite];
+		Sprite spriteSpoiled = spoiledFoodSprites[randSprite];
 
 		string _name = taskNameInput.text;
 		string _description = taskDescriptionInput.text;
@@ -119,11 +121,12 @@ public class TaskManager : MonoBehaviour
 		GameObject newTaskGO = Instantiate(taskPrefab, taskParent.transform, false);
 		GameObject newTaskOverviewGO = Instantiate(taskOverviewPrefab, taskOverviewMenuLayoutGroup.transform, false);
 
-		Task newTask = new Task(_name, _description, sprite);
+		Task newTask = new Task(_name, _description, sprite, spriteSpoiled);
 		TaskOverviewItem newTaskOverviewItem = new TaskOverviewItem(_name, sprite, dueDateDayTemp, dueDateHoursTemp, DueDateMinutesTemp);
 
 		newTaskGO.GetComponent<Task>().Name = newTask.Name;
 		newTaskGO.GetComponent<Task>().Description = newTask.Description;
+		newTaskGO.GetComponent<Task>().Sprite_spoiled = newTask.Sprite_spoiled;
 		newTaskGO.GetComponent<Task>().Sprite = newTask.Sprite;
 		newTaskGO.GetComponent<Task>().State = TaskState.Active;
 		newTaskGO.GetComponent<Task>().DueDateDays = dueDateDayTemp;
@@ -145,7 +148,9 @@ public class TaskManager : MonoBehaviour
 		ToggleAddTaskMenu();
 		CleanTaskMenu();
 	}
+	#endregion
 
+	#region Private Voids
 	/// <summary>
 	/// Finds a parent object with space for a task. This returns an Gameobject with space.
 	/// </summary>
@@ -163,9 +168,13 @@ public class TaskManager : MonoBehaviour
 		return null;
 	}
 
+	/// <summary>
+	/// Cleans the task menu and makes it ready for use again.
+	/// </summary>
 	private void CleanTaskMenu()
 	{
 		taskNameInput.text = "";
 		taskDescriptionInput.text = "";
 	}
+	#endregion
 }
