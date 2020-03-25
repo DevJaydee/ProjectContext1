@@ -25,6 +25,7 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[Space]
 	[SerializeField] private Image imageComp = default; // Reference to the Image component.
 	[SerializeField] private Sprite sprite = default;   // The sprite for the task. This will be some type of food.
+	[SerializeField] private Sprite sprite_spoiled = default;   // The spoiled sprite for the task. This will be some type of food.
 	[SerializeField] private TextMeshProUGUI dueDateCounter = default;  // The text element that shows the user how much time is left.
 	[Space]
 	[SerializeField] private float convertedTotalSecondsToDeadline = 0;
@@ -32,7 +33,7 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedHoursToSecondsDeadline = 0;
 	[SerializeField] [Tooltip("DO NOT EDIT IN EDITOR!")] private float convertedDaysToSecondsDeadline = 0;
 	[Space]
-	[SerializeField] private float taskHungerWorth = 10;	// How much this wil fill the HungerBar with.
+	[SerializeField] private float taskHungerWorth = 10;    // How much this wil fill the HungerBar with.
 	#endregion
 
 	#region Getters And Setters
@@ -45,6 +46,7 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public int DueDateDays { get => dueDateDays; set => dueDateDays = value; }
 
 	public Sprite Sprite { get => sprite; set => sprite = value; }
+	public Sprite Sprite_spoiled { get => sprite_spoiled; set => sprite_spoiled = value; }
 	public TextMeshProUGUI DueDateCounter { get => dueDateCounter; set => dueDateCounter = value; }
 
 	public float ConvertedTotalSecondsToDeadline { get => convertedTotalSecondsToDeadline; set => convertedTotalSecondsToDeadline = value; }
@@ -59,7 +61,6 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		convertedMinutesToSecondDeadline = dueDateMinutes * 60;
 		convertedHoursToSecondsDeadline = dueDateHours * 3600;
 		convertedDaysToSecondsDeadline = dueDateDays * 86400;
-		convertedTotalSecondsToDeadline = convertedDaysToSecondsDeadline + convertedHoursToSecondsDeadline + convertedTotalSecondsToDeadline;
 
 		StartCoroutine(UpdateDueDateCounter());
 	}
@@ -71,6 +72,10 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		if(convertedHoursToSecondsDeadline > 0) convertedHoursToSecondsDeadline -= Time.deltaTime; else convertedHoursToSecondsDeadline = 0;
 		if(convertedDaysToSecondsDeadline > 0) convertedDaysToSecondsDeadline -= Time.deltaTime; else convertedDaysToSecondsDeadline = 0;
 		if(convertedTotalSecondsToDeadline > 0) convertedTotalSecondsToDeadline -= Time.deltaTime; else convertedTotalSecondsToDeadline = 0;
+		convertedTotalSecondsToDeadline = convertedDaysToSecondsDeadline + convertedHoursToSecondsDeadline + convertedMinutesToSecondDeadline;
+
+		if(convertedTotalSecondsToDeadline <= 0f)
+			imageComp.sprite = sprite_spoiled;
 	}
 
 	/// <summary>
@@ -84,13 +89,13 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		{
 			if(state == TaskState.Active)
 			{
-				string dueDateDaysString = (convertedDaysToSecondsDeadline / 86400).ToString("F0");
+				string dueDateDaysString = Mathf.Ceil(convertedDaysToSecondsDeadline / 86400).ToString("F0");
 				if(dueDateDays < 10) dueDateDaysString = "0" + dueDateDaysString;
 
-				string dueDateHoursString = (convertedHoursToSecondsDeadline / 3600).ToString("F0");
+				string dueDateHoursString = Mathf.Ceil(convertedHoursToSecondsDeadline / 3600).ToString("F0");
 				if(dueDateHours < 10) dueDateHoursString = "0" + dueDateHoursString;
 
-				string dueDateMinutesString = (convertedMinutesToSecondDeadline / 60).ToString("F0");
+				string dueDateMinutesString = Mathf.Ceil(convertedMinutesToSecondDeadline / 60).ToString("F0");
 				if(dueDateMinutes < 10) dueDateMinutesString = "0" + dueDateMinutesString;
 
 				dueDateCounter.text = dueDateDaysString + ":" + dueDateHoursString + ":" + dueDateMinutesString;
@@ -116,10 +121,11 @@ public class Task : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	}
 	#endregion
 
-	public Task(string _name, string _description, Sprite _sprite)
+	public Task(string _name, string _description, Sprite _sprite, Sprite _spriteSpoiled)
 	{
 		name = _name;
 		description = _description;
 		sprite = _sprite;
+		sprite_spoiled = _spriteSpoiled;
 	}
 }
