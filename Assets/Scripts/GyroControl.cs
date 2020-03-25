@@ -32,12 +32,12 @@ public class GyroControl : MonoBehaviour
 		newRotation = Mathf.Clamp(currentAcceleration.x * sensitivity, -1, 1);
 	}
 
-	protected void OnGUI()
-	{
-		GUI.skin.label.fontSize = Screen.width / 40;
+	//protected void OnGUI()
+	//{
+	//	GUI.skin.label.fontSize = Screen.width / 40;
 
-		GUILayout.Label("Orientation: " + Screen.orientation);
-		GUILayout.Label("input.Accelerometer: " + Input.acceleration);
-		GUILayout.Label("iphone width/font: " + Screen.width + " : " + GUI.skin.label.fontSize);
-	}
+	//	GUILayout.Label("Orientation: " + Screen.orientation);
+	//	GUILayout.Label("input.Accelerometer: " + Input.acceleration);
+	//	GUILayout.Label("iphone width/font: " + Screen.width + " : " + GUI.skin.label.fontSize);
+	//}
 }
