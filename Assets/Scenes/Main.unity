@@ -198,7 +198,7 @@ RectTransform:
   m_GameObject: {fileID: 42295172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8587, y: 1.8587, z: 1.8587}
+  m_LocalScale: {x: 0.9053542, y: 0.9053542, z: 0.9053542}
   m_Children: []
   m_Father: {fileID: 1032318436}
   m_RootOrder: 0
@@ -250,7 +250,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 42295175}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 976040475}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CharacterCustomisation
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &42295175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +326,7 @@ RectTransform:
   m_GameObject: {fileID: 72011443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8587, y: 1.8587, z: 1.8587}
+  m_LocalScale: {x: 0.9053542, y: 0.9053542, z: 0.9053542}
   m_Children: []
   m_Father: {fileID: 1032318436}
   m_RootOrder: 2
@@ -367,7 +378,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 72011446}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 976040475}
+        m_MethodName: ToggleMiniGamesMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &72011446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +410,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: e391c881304568f418dadc5e77b1367a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2228,6 +2250,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66558369743213838, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.9733877
+      objectReference: {fileID: 0}
+    - target: {fileID: 66558369743213838, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.9733877
+      objectReference: {fileID: 0}
+    - target: {fileID: 66558369743213838, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.9733877
+      objectReference: {fileID: 0}
+    - target: {fileID: 66558369743213838, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -122
+      objectReference: {fileID: 0}
+    - target: {fileID: 66558369743213838, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 71400855779898597, guid: c3fc1a434ad40e941a0cb3b4ec45170c,
         type: 3}
@@ -24377,6 +24424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7267493783466521321, guid: c3fc1a434ad40e941a0cb3b4ec45170c, type: 3}
+    - {fileID: 1987477227, guid: c3fc1a434ad40e941a0cb3b4ec45170c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c3fc1a434ad40e941a0cb3b4ec45170c, type: 3}
 --- !u!1 &985182597 stripped
 GameObject:
@@ -24801,7 +24849,7 @@ RectTransform:
   m_GameObject: {fileID: 1463840419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8587, y: 1.8587, z: 1.8587}
+  m_LocalScale: {x: 0.9053542, y: 0.9053542, z: 0.9053542}
   m_Children: []
   m_Father: {fileID: 1032318436}
   m_RootOrder: 1
@@ -24853,7 +24901,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1463840422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 976040474}
+        m_MethodName: ToggleTaskOverviewMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1463840422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25090,14 +25149,14 @@ RectTransform:
   m_GameObject: {fileID: 1589623968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.4128666, y: 6.4128666, z: 6.4128666}
+  m_LocalScale: {x: 5.5375104, y: 5.5375104, z: 5.5375104}
   m_Children: []
   m_Father: {fileID: 861780559}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.41853562, y: 0.08400001}
   m_AnchorMax: {x: 0.69775105, y: 0.17736377}
-  m_AnchoredPosition: {x: 31, y: -28}
+  m_AnchoredPosition: {x: 11, y: 7}
   m_SizeDelta: {x: -110.400024, y: -33.399963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589623970
