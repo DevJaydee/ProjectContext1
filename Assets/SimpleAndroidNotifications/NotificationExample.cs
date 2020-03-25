@@ -30,7 +30,7 @@ namespace Assets.SimpleAndroidNotifications
             var notificationParams = new NotificationParams
             {
                 Id = UnityEngine.Random.Range(0, int.MaxValue),
-                Delay = TimeSpan.FromSeconds(5),
+                Delay = TimeSpan.FromSeconds(0),
                 Title = "This is the title of the push notification",
                 Message = "This will show how much time is left for the earliest deadline",
                 Ticker = "Ticker",
