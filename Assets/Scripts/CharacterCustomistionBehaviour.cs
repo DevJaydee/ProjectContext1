@@ -15,9 +15,9 @@ public class CharacterCustomistionBehaviour : MonoBehaviour
 
 	private void Start()
 	{
-		SelectHead(0);
-		SelectTorso(0);
-		SelectLegs(0);
+		SelectHead(PlayerPrefs.GetInt("HeadChildIndex"));
+		SelectTorso(PlayerPrefs.GetInt("TorsoChildIndex"));
+		SelectLegs(PlayerPrefs.GetInt("LegsChildIndex"));
 	}
 
 	public void SelectHead(int indexChange)
@@ -35,6 +35,8 @@ public class CharacterCustomistionBehaviour : MonoBehaviour
 			else
 				headTransform.GetChild(i).gameObject.SetActive(false);
 		}
+
+		PlayerPrefs.SetInt("HeadChildIndex", headChildIndex);
 	}
 	public void SelectTorso(int indexChange)
 	{
@@ -51,6 +53,8 @@ public class CharacterCustomistionBehaviour : MonoBehaviour
 			else
 				torsoTransform.GetChild(i).gameObject.SetActive(false);
 		}
+
+		PlayerPrefs.SetInt("TorsoChildIndex", torsoChildIndex);
 	}
 	public void SelectLegs(int indexChange)
 	{
@@ -67,6 +71,7 @@ public class CharacterCustomistionBehaviour : MonoBehaviour
 			else
 				legsTransform.GetChild(i).gameObject.SetActive(false);
 		}
-	}
 
+		PlayerPrefs.SetInt("LegsChildIndex", legsChildIndex);
+	}
 }
