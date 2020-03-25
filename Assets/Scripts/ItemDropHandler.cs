@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ItemDropHandler : MonoBehaviour, IDropHandler
 {
@@ -11,7 +11,9 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
 	{
 		if(eventData.pointerDrag != null)
 		{
-			character.IncreaseHunger(eventData.pointerDrag.GetComponent<Task>().TaskHungerWorth);
+			if(eventData.pointerDrag.GetComponent<Task>().ConvertedTotalSecondsToDeadline > 0f)
+				character.IncreaseHunger(eventData.pointerDrag.GetComponent<Task>().TaskHungerWorth);
+
 			Destroy(eventData.pointerDrag);
 			Debug.Log("Dropped on the Monster!");
 		}
