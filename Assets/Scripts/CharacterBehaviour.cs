@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.SimpleAndroidNotifications;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,9 @@ public class CharacterBehaviour : MonoBehaviour
 			else
 				hungerBarValue = 0;
 
+			//if(hungerBarValue <= 25 && hungerBarValue >= 24)
+			//	ScheduleCustom();
+
 			sliderImage.fillAmount = hungerBarValue / 60;
 		}
 	}
@@ -41,6 +45,25 @@ public class CharacterBehaviour : MonoBehaviour
 		hungerBarValue += amount;
 		if(hungerBarValue > 60)
 			hungerBarValue = 60;
+	}
+
+	public void ScheduleCustom()
+	{
+		var notificationParams = new NotificationParams
+		{
+			Id = UnityEngine.Random.Range(0, int.MaxValue),
+			Title = "Your monster needs attention!",
+			Message = "Your monster is very hungry maybe you should finish a task",
+			Ticker = "Ticker",
+			Sound = true,
+			Vibrate = true,
+			Light = true,
+			SmallIcon = NotificationIcon.Bell,
+			SmallIconColor = new Color(0, 0.5f, 0),
+			LargeIcon = "app_icon"
+		};
+
+		NotificationManager.SendCustom(notificationParams);
 	}
 	#endregion
 }
