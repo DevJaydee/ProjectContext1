@@ -16,7 +16,7 @@ public class CloudBehaviour : MonoBehaviour
 
 	private void Update()
 	{
-		if(character.GetComponent<CloudJumperCharacterController>().BottomOfChar.transform.position.y > boxColl.transform.position.y + boxColl.size.y / 2)
+		if(character.GetComponent<CloudJumperCharacterController>().BottomOfChar.transform.position.y > boxColl.transform.position.y + boxColl.size.y)
 			boxColl.enabled = true;
 		else
 			boxColl.enabled = false;
