@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.SimpleAndroidNotifications;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class CloudJumperCharacterController : MonoBehaviour
 	[SerializeField] private bool canJump = true;
 	[Space]
 	[SerializeField] private Transform bottomOfChar = default;
+
+	int timesJumped = 0;
 
 	public float MoveDir { get => moveDir; set => moveDir = value; }
 	public Transform BottomOfChar { get => bottomOfChar; set => bottomOfChar = value; }
@@ -41,6 +44,12 @@ public class CloudJumperCharacterController : MonoBehaviour
 			rb.AddForce(Vector3.up * jumpForce * Time.deltaTime, ForceMode2D.Impulse);
 			StartCoroutine(StartJumpCooldown());
 			Debug.Log("Jumped!");
+			timesJumped++;
+
+			if(timesJumped == 10)
+			{
+				ScheduleCustom();
+			}
 		}
 	}
 
@@ -49,5 +58,24 @@ public class CloudJumperCharacterController : MonoBehaviour
 		canJump = false;
 		yield return new WaitForSeconds(jumpCooldown);
 		canJump = true;
+	}
+
+	public void ScheduleCustom()
+	{
+		var notificationParams = new NotificationParams
+		{
+			Id = UnityEngine.Random.Range(0, int.MaxValue),
+			Title = "Your monster needs attention!",
+			Message = "Your monster is very hungry maybe you should finish a task",
+			Ticker = "Ticker",
+			Sound = true,
+			Vibrate = true,
+			Light = true,
+			SmallIcon = NotificationIcon.Bell,
+			SmallIconColor = new Color(0, 0.5f, 0),
+			LargeIcon = "app_icon"
+		};
+
+		NotificationManager.SendCustom(notificationParams);
 	}
 }
