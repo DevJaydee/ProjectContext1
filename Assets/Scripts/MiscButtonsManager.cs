@@ -9,7 +9,8 @@ public class MiscButtonsManager : MonoBehaviour
 
 	private void Start()
 	{
-		miniGamesMenu.SetActive(false);
+		if(miniGamesMenu)
+			miniGamesMenu.SetActive(false);
 	}
 
 	public void ToggleMiniGamesMenu()
