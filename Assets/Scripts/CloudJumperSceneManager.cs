@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CloudJumperSceneManager : MonoBehaviour
 {
@@ -22,4 +23,9 @@ public class CloudJumperSceneManager : MonoBehaviour
 			instance = this;
 	}
 	#endregion
+
+	public void LoadMainScene()
+	{
+		SceneManager.LoadScene("Main");
+	}
 }
