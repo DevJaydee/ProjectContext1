@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e8364b8fb50e54d90d9a212852e83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 750
+  jumpForce: 500
   rb: {fileID: 6674411386995982352}
   moveDir: 0
   movespeed: 5
