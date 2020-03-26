@@ -29,7 +29,7 @@ public class CloudGenerator : MonoBehaviour
 			Vector3 bottomLeftWorld = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
 			Vector3 topRightWorld = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
 
-			GameObject newCloudGO = Instantiate(cloudPrefab, new Vector3(Random.Range(bottomLeftWorld.x, topRightWorld.x), transform.position.y, 0), Quaternion.identity);
+			GameObject newCloudGO = Instantiate(cloudPrefab, new Vector3(Random.Range(bottomLeftWorld.x, topRightWorld.x), cloudsInScene[cloudsInScene.Count - 1].transform.position.y + distanceBetweenSpawns, 0), Quaternion.identity);
 			cloudsInScene.Add(newCloudGO);
 		}
 	}

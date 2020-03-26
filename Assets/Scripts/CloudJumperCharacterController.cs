@@ -41,7 +41,7 @@ public class CloudJumperCharacterController : MonoBehaviour
 	{
 		if(collision.gameObject.CompareTag("Cloud") && canJump)
 		{
-			rb.AddForce(Vector3.up * jumpForce * Time.deltaTime, ForceMode2D.Impulse);
+			rb.AddForce((Vector3.up * jumpForce) * Time.deltaTime, ForceMode2D.Impulse);
 			StartCoroutine(StartJumpCooldown());
 			Debug.Log("Jumped!");
 			timesJumped++;
